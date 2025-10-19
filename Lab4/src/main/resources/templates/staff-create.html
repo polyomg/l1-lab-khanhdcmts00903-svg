@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo nhân viên</title>
+</head>
+<body>
+<h2>Thông tin nhân viên</h2>
+
+<form th:action="@{/staff/create/save}" 
+      th:object="${staff}" 
+      method="post" 
+      enctype="multipart/form-data">
+
+    Email: <input type="email" th:field="*{email}"/> <br><br>
+
+    Họ và tên: <input type="text" th:field="*{fullname}"/> <br><br>
+
+    Giới tính:
+    <input type="radio" th:field="*{gender}" value="true"/> Nam
+    <input type="radio" th:field="*{gender}" value="false"/> Nữ <br><br>
+
+    Ngày sinh: <input type="text" th:field="*{birthday}" 
+                      th:value="${#dates.format(birthday,'MM/dd/yyyy')}"/> <br><br>
+
+    Hình ảnh: 
+    <input type="hidden" th:field="*{photo}"/>
+    <input name="photo_file" type="file"/> <br><br>
+
+    Cấp bậc:
+    <select th:field="*{level}">
+        <option value="1">Fresher</option>
+        <option value="2">Junior</option>
+        <option value="3">Senior</option>
+        <option value="4">Leader</option>
+    </select> <br><br>
+
+    Lương: <input type="number" th:field="*{salary}"/> <br><br>
+
+    <button type="submit">Create</button>
+</form>
+
+<h3 th:text="${message}"></h3>
+
+</body>
+</html>
