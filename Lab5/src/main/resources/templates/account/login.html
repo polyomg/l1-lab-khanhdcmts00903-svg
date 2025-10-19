@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đăng nhập</title>
+</head>
+<body>
+    <h2>Đăng nhập</h2>
+    
+    <div th:if="${param.success}">
+        <p style="color: green;">Đăng nhập thành công! Username đã được lưu vào Session và Cookie (nếu chọn Remember).</p>
+        <p>Kiểm tra Cookie "user" và Session "username" trong DevTools của trình duyệt.</p>
+    </div>
+
+   	<form action="/account/login" method="post"> 
+        <div>
+            <label>Username:</label>
+            <input name="username">
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <input type="checkbox" name="remember" value="true">
+            <label>Remember Me (Ghi nhớ 10 ngày)</label>
+        </div>
+        <div>
+            <button>Login</button>
+        </div>
+    </form>
+    
+    [<p>Sử dụng tài khoản mẫu: **poly** / **123** để kiểm tra.</p>
+
+</body>
+</html>

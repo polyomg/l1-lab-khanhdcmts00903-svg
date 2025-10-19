@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách mặt hàng</title>
+</head>
+<body>
+    <h2>Danh sách sản phẩm</h2>
+
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+        <h3>Thông tin Giỏ hàng hiện tại:</h3>
+        <p>Tổng số lượng: <strong th:text="${totalCount}">0</strong> món</p>
+        <p>Tổng tiền: <strong th:text="${#numbers.formatDecimal(totalAmount, 0, 'COMMA', 2, 'POINT')}">0.00</strong> USD</p>
+        <p><a href="/cart/view">Xem chi tiết Giỏ hàng</a></p>
+    </div>
+    
+    <ul>
+        <th:block th:each="item: ${items}">
+            <li>
+                <span th:text="${item.name}"></span> 
+                (<span th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}"></span>) ::
+                [<a th:href="@{|/cart/add/${item.id}|}">Add To Cart</a>]
+            </li>
+        </th:block>
+    </ul>
+
+</body>
+</html>

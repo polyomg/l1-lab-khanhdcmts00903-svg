@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đăng ký</title>
+</head>
+<body>
+    <h2>Đăng ký Tài khoản và Upload Hình</h2>
+    
+    <div th:if="${message}">
+        <p th:text="${message}" th:style="${message.startsWith('Đăng ký thất bại') ? 'color: red;' : 'color: green;'}" ></p>
+        <div th:if="${filePath}">
+            <p>Họ tên: <strong th:text="${fullname}"></strong></p>
+            <p>Tên đăng nhập: <strong th:text="${username}"></strong></p>
+            <p>Tên file đã lưu: <strong th:text="${filename}"></strong></p>
+            <p>File ảnh (tham khảo): <img th:src="${filePath}" style="max-width: 150px; height: auto;" alt="Ảnh đã upload"/></p>
+        </div>
+    </div>
+
+    <form action="/account/register" method="post" enctype="multipart/form-data">
+        <div>
+            <label>Fullname:</label>
+            <input name="fullname" required>
+        </div>
+        <div>
+            <label>Username:</label>
+            <input name="username" required>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <label>Photo (Ảnh):</label>
+            <input type="file" name="photo" required>
+        </div>
+        <div style="margin-top: 15px;">
+            <button>Register</button>
+        </div>
+    </form>
+    
+    <hr/>
+    <a href="/account/login">Quay lại Đăng nhập</a>
+
+</body>
+</html>
