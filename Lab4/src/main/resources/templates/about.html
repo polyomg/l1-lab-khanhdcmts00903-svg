@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/shared/layout :: view(~{::title}, ~{::article})}">
+<head>
+    <title th:text="#{menu.about}">About Us</title>
+</head>
+<body>
+<article>
+    <h1 th:text="#{menu.about}">About</h1>
+    <ul>
+        <li><h3>FPT Polytechnic</h3></li>
+        <li><h3>Learning by Doing</h3></li>
+    </ul>
+</article>
+</body>
+</html>

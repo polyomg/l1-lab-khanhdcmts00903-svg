@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gửi Email</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="text"], textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { margin-top: 20px; padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        .message { color: green; margin-top: 15px; font-weight: bold; }
+        .error { color: red; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Trang Gửi Email</h1>
+
+    <div th:if="${message}" th:class="${error != null ? 'error' : 'message'}" th:text="${message}"></div>
+
+    <form method="post" action="/mail/process">
+        
+        <input type="hidden" name="from" value="WebShop <web-shop@gmail.com>"/>
+
+        <label for="to">To (Người nhận):</label>
+        <input type="text" id="to" name="to" required value="receiver@gmail.com">
+
+        <label for="cc">CC (Đồng gửi):</label>
+        <input type="text" id="cc" name="cc" placeholder="VD: mail1@example.com, mail2@example.com">
+
+        <label for="bcc">BCC (Đồng gửi ẩn):</label>
+        <input type="text" id="bcc" name="bcc">
+
+        <label for="subject">Subject (Tiêu đề):</label>
+        <input type="text" id="subject" name="subject" required value="Kiểm tra Lab 8 Mail Service">
+
+        <label for="body">Body (Nội dung HTML):</label>
+        <textarea id="body" name="body" rows="6" required>
+            &lt;b&gt;Chào bạn!&lt;/b&gt; Đây là email kiểm tra từ Lab 8.
+            &lt;br&gt;Vui lòng xác nhận đã nhận được.
+        </textarea>
+        
+        <label for="filenames">Attachments (File đính kèm - đường dẫn tuyệt đối):</label>
+        <input type="text" id="filenames" name="filenames" placeholder="VD: C:/file1.pdf; C:/images/logo.png">
+
+        <hr>
+
+        <label>Chọn Phương Thức Gửi:</label><br>
+        <input type="radio" id="sendDirect" name="method" value="send" checked>
+        <label for="sendDirect" style="display: inline;">Gửi Trực Tiếp (Bài 1)</label><br>
+
+        <input type="radio" id="sendQueue" name="method" value="push">
+        <label for="sendQueue" style="display: inline;">Xếp vào Hàng Đợi (@Scheduled) (Bài 2)</label>
+        
+        <button type="submit">Gửi Email</button>
+    </form>
+</body>
+</html>

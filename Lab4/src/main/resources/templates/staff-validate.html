@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Validation</title>
+</head>
+<body>
+<h2>Form kiểm tra dữ liệu nhân viên</h2>
+
+<form th:action="@{/staff/create/save}" method="post" enctype="multipart/form-data"
+      th:object="${staff}">
+    <div>
+        Email:
+        <input type="text" th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div>
+        Họ và tên:
+        <input type="text" th:field="*{fullname}"/>
+        <span th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></span>
+    </div>
+
+    <div>
+        Giới tính:
+        <input type="radio" th:field="*{gender}" value="true"/> Nam
+        <input type="radio" th:field="*{gender}" value="false"/> Nữ
+        <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+    </div>
+
+    <div>
+        Ngày sinh:
+        <input type="date" th:field="*{birthday}"/>
+        <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></span>
+    </div>
+
+    <div>
+        Lương:
+        <input type="number" th:field="*{salary}"/>
+        <span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+    </div>
+
+    <div>
+        Hình ảnh:
+        <input type="file" name="photo_file"/>
+    </div>
+
+    <button type="submit">Gửi</button>
+</form>
+
+<p th:text="${message}"></p>
+</body>
+</html>
