@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <style>
+        .error-message { color: red; font-weight: bold; }
+        .success-message { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Đăng nhập Tài khoản</h1>
+
+    <i th:text="${message}" th:class="${user == null ? 'error-message' : 'success-message'}"></i>
+    
+    <form action="/auth/login" method="post">
+        <label>Username:</label>
+        <input name="username" type="text" required>
+        <br>
+        <label>Password:</label>
+        <input name="password" type="password" required>
+        <hr>
+        <button type="submit">Login</button>
+    </form>
+    
+    <div th:if="${session.user != null}">
+        <p>Đã đăng nhập với Username: <b th:text="${session.user.username}"></b></p>
+    </div>
+</body>
+</html>
